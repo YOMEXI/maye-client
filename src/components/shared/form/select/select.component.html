@@ -1,0 +1,19 @@
+<div class="form-group">
+  <label>{{ label }}</label>
+  <select
+    class="advanced-input form-control"
+    [(ngModel)]="value"
+    (change)="onSelectChange($event)"
+  >
+    <!-- <option value="" selected>{{ placeholder }}</option> -->
+    <option *ngFor="let option of options" [value]="option.value">
+      {{ option.label }}
+    </option>
+  </select>
+  <div
+    class="text-danger"
+    *ngIf="getErrorMessage() && form.get(formControlName).touched"
+  >
+    {{ getErrorMessage() }}
+  </div>
+</div>

@@ -1,0 +1,85 @@
+@import "ngx-toastr/toastr";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+:root {
+  /* Primary Blue Palette */
+  --blue-50: #e3f2fd;
+  --blue-100: #bbdefb;
+  --blue-200: #90caf9;
+  --blue-300: #64b5f6;
+  --blue-400: #42a5f5;
+  --blue-500: #2196f3; /* Primary Blue */
+  --blue-600: #1e88e5;
+  --blue-700: #1976d2;
+  --blue-800: #1565c0;
+  --blue-900: #0d47a1;
+
+  /* Accent Colors */
+  --accent-green: #4caf50; /* Success */
+  --accent-yellow: #ffeb3b; /* Warning */
+  --accent-red: #f44336; /* Error */
+  --accent-orange: #ff9800; /* Alert */
+
+  /* Grayscale Palette */
+  --gray-100: #fafafa;
+  --gray-200: #eeeeee;
+  --gray-300: #e0e0e0;
+  --gray-400: #bdbdbd;
+  --gray-500: #9e9e9e;
+  --gray-600: #757575;
+  --gray-700: #616161;
+  --gray-800: #424242;
+  --gray-900: #212121;
+
+  --white-00: #ffffff;
+
+  /* Theme Mode Support */
+  --background-light: var(--gray-100);
+  --background-dark: var(--gray-900);
+  --text-light: var(--gray-100);
+  --text-dark: var(--gray-900);
+
+  /* Typography */
+  --font-family: "Segoe UI", Roboto, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-xxl: 2rem;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+
+  /* Borders and Shadows */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+
+  --shadow-light: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-heavy: 0px 8px 16px rgba(0, 0, 0, 0.2);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease-in-out;
+  --transition-default: 0.3s ease-in-out;
+
+  /* Focus States */
+  --focus-ring: 2px solid var(--blue-500);
+}

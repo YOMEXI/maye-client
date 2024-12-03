@@ -1,0 +1,22 @@
+<div class="tab-container">
+  <div class="tab-header">
+    @for (tab of tabs; track $index) {
+    <div
+      class="tab-title"
+      [class.active]="$index === activeTabIndex"
+      (click)="selectTab($index)"
+    >
+      <i class="bx {{ tab.icon }}"></i>
+      <span>{{ tab.label }}</span>
+    </div>
+    }
+  </div>
+
+  <div class="tab-content">
+    @if (activeTab; as tab) {
+    <div class="tab-content-wrapper">
+      <ng-template [ngTemplateOutlet]="tab.content" />
+    </div>
+    }
+  </div>
+</div>

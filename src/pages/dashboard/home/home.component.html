@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="chart-grid-container">
+    <div class="chart-grid">
+      <canvas
+        *ngIf="chartData$ | async as chartData"
+        baseChart
+        [data]="chartData"
+        [options]="chartOptions"
+        [type]="'pie'"
+      >
+      </canvas>
+    </div>
+  </div>
+
+  <div class="status-table">
+    <c-tab
+      [tabs]="[
+        { label: 'Pending', icon: 'bx-home', content: PendingTemplae },
+        { label: 'Accepted', icon: 'bx-user', content: profileTemplate },
+        { label: 'Suspended', icon: 'bx-cog', content: settingsTemplate }
+      ]"
+    ></c-tab>
+
+    <ng-template #PendingTemplae>
+      <h3>Welcome to the Home tab!</h3>
+      <div class="table-container">
+        @if (pendingStaff |async; as pendingStaffInfo) {
+        <table class="staff-table">
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Staff Id</th>
+              <th>Status</th>
+              <th>Email</th>
+              <th>Occupation</th>
+              <th>Years of Experience</th>
+              <th>Medical License</th>
+              <th>Gender</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (staff of pendingStaffInfo.content ; track staff.staffId) {
+            <tr>
+              <td>
+                {{ staff.firstName }} {{ staff.middleName }}
+                {{ staff.lastName }}
+              </td>
+              <td>{{ staff.staffId }}</td>
+              <td>{{ staff.employmentStatus }}</td>
+              <td>{{ staff.email }}</td>
+              <td>{{ staff.occupation }}</td>
+              <td>{{ staff.status }}</td>
+              <td>{{ staff.medicalLicense }}</td>
+              <td>{{ staff.gender }}</td>
+            </tr>
+            } @empty {
+            <tr>
+              <td colspan="4">No pending staff available.</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+
+        <c-pagination
+          [totalPages]="pendingStaffInfo.totalPages"
+          [currentPage]="pendingStaffInfo.pageNumber"
+          (pageChange)="onPageChange($event)"
+        ></c-pagination>
+        }
+      </div>
+    </ng-template>
+
+    <ng-template #profileTemplate>
+      <h3>Your Profile</h3>
+      <p>Edit your profile information here.</p>
+    </ng-template>
+
+    <ng-template #settingsTemplate>
+      <h3>Settings</h3>
+      <p>Adjust your application preferences.</p>
+    </ng-template>
+  </div>
+</div>

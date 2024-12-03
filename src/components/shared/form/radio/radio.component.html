@@ -1,0 +1,14 @@
+<div *ngFor="let option of options" class="radio-option">
+  <input
+    type="radio"
+    [value]="option.value"
+    [checked]="selectedValue === option.value"
+    (change)="onSelectionChange(option.value)"
+    [id]="option.value"
+  />
+  <label [for]="option.value">{{ option.label }}</label>
+</div>
+
+<div *ngIf="showError" class="error-message">
+  <p>Please select an option.</p>
+</div>

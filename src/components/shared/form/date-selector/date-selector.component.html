@@ -1,0 +1,42 @@
+<div class="date-picker">
+  <div class="input-container">
+    <input
+      type="text"
+      [value]="formatDate(selectedDate)"
+      readonly
+      (click)="toggleCalendar()"
+      placeholder="Select date"
+    />
+    <span class="calendar-icon" (click)="toggleCalendar()">📅</span>
+  </div>
+
+  <div class="calendar" *ngIf="showCalendar">
+    <div class="calendar-header">
+      <button type="button" class="nav-btn" (click)="previousMonth($event)">
+        &lt;
+      </button>
+      <span>{{ currentMonth | date : "MMMM yyyy" }}</span>
+      <button type="button" class="nav-btn" (click)="nextMonth($event)">
+        &gt;
+      </button>
+    </div>
+
+    <div class="weekdays">
+      <div class="weekday" *ngFor="let day of weekDays">{{ day }}</div>
+    </div>
+
+    <div class="calendar-grid">
+      <div
+        *ngFor="let day of calendarDays"
+        class="calendar-day"
+        [class.empty]="!day.date"
+        [class.selected]="isSelected(day.date)"
+        [class.today]="isToday(day.date)"
+        [class.outside-month]="!day.isCurrentMonth"
+        (click)="selectDate(day)"
+      >
+        {{ day.date?.getDate() }}
+      </div>
+    </div>
+  </div>
+</div>

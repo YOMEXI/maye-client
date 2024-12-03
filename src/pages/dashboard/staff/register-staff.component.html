@@ -1,0 +1,129 @@
+<h4>Register a staff</h4>
+@if ((data$ |async)?.isSubmitting) {
+<app-circular-loader></app-circular-loader>
+}
+<form
+  [formGroup]="staffRegistrationForm"
+  (ngSubmit)="registerStaff()"
+  class="register-form"
+>
+  <div class="input-container">
+    <fieldset>
+      <legend>Personal Information</legend>
+      <div class="input">
+        <c-input
+          formControlName="firstName"
+          [required]="true"
+          [minLength]="4"
+          placeholder="FirstName"
+          [control]="NameControl('firstName')"
+        ></c-input>
+      </div>
+      <div class="input">
+        <c-input
+          formControlName="lastName"
+          [required]="true"
+          placeholder="LastName"
+          [control]="NameControl('lastName')"
+        ></c-input>
+      </div>
+      <div class="input">
+        <c-input
+          formControlName="middleName"
+          [required]="true"
+          placeholder="middleName"
+          [control]="NameControl('middleName')"
+        ></c-input>
+      </div>
+      <div class="input">
+        <c-input
+          formControlName="email"
+          [required]="true"
+          [email]="true"
+          placeholder="Email"
+          [control]="NameControl('email')"
+        ></c-input>
+      </div>
+      <div class="input">
+        <c-input
+          inputType="textarea"
+          [required]="true"
+          placeholder="address"
+          formControlName="address"
+          [control]="NameControl('address')"
+        ></c-input>
+      </div>
+      <div class="input">
+        <c-date-selector
+          formControlName="dob"
+          placeholder="Set Date of Birth"
+        ></c-date-selector>
+        <div
+          class="error-message"
+          *ngIf="staffRegistrationForm.get('dob')?.errors?.['required'] && staffRegistrationForm.get('dob')?.touched"
+        >
+          Please select a date
+        </div>
+      </div>
+
+      <div class="input">
+        <c-select
+          [required]="true"
+          formControlName="gender"
+          label="Choose Sex"
+          [options]="gender"
+          [form]="staffRegistrationForm"
+          errorMessage="Please select sex"
+        ></c-select>
+      </div>
+      <div class="input">
+        <c-select
+          [required]="true"
+          formControlName="occupation"
+          errorMessage="Please select an occupation"
+          label="Choose Occupation"
+          [options]="medicalOccupation"
+          [form]="staffRegistrationForm"
+        ></c-select>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Work Information</legend>
+      <div class="input">
+        <c-input
+          [numbersOnly]="true"
+          [required]="true"
+          [control]="NameControl('yearsOfExperience')"
+          placeholder="Years of Experience"
+          formControlName="yearsOfExperience"
+        ></c-input>
+      </div>
+      <div class="input">
+        <c-input
+          formControlName="medicalLicense"
+          [required]="true"
+          [control]="NameControl('medicalLicense')"
+          placeholder="Medical License Number"
+        ></c-input>
+      </div>
+      <div class="input">
+        <c-input
+          formControlName="telephoneNumber"
+          [required]="true"
+          placeholder="Tel Number"
+          [control]="NameControl('telephoneNumber')"
+        ></c-input>
+      </div>
+      <div class="input">
+        <c-radio
+          formControlName="employmentStatus"
+          [options]="employmentStatus"
+          (selectionChange)="onRadioChange($event)"
+        ></c-radio>
+      </div>
+    </fieldset>
+  </div>
+  <div class="submit">
+    <button [disabled]="staffRegistrationForm.invalid">Submit</button>
+  </div>
+</form>

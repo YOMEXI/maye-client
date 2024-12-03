@@ -1,0 +1,46 @@
+<div class="advanced-input-container">
+  <ng-container [ngSwitch]="inputType">
+    <input
+      *ngSwitchCase="'text'"
+      [formControl]="control"
+      [placeholder]="placeholder"
+      [attr.maxlength]="maxLength"
+      [attr.minlength]="minLength"
+      [attr.autocomplete]="autocomplete"
+      [attr.aria-label]="ariaLabel"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      (keydown)="onKeyDown($event)"
+      class="advanced-input"
+    />
+    <textarea
+      *ngSwitchCase="'textarea'"
+      [formControl]="control"
+      [placeholder]="placeholder"
+      [attr.maxlength]="maxLength"
+      [attr.minlength]="minLength"
+      [attr.rows]="rows"
+      [attr.cols]="cols"
+      [attr.autocomplete]="autocomplete"
+      [attr.aria-label]="ariaLabel"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      class="advanced-textarea"
+    ></textarea>
+  </ng-container>
+  <div *ngIf="showCharCount && maxLength" class="char-count">
+    {{ control.value?.length || 0 }} / {{ maxLength }}
+  </div>
+  <div *ngIf="control.touched && control.invalid" class="error-messages">
+    <p *ngIf="control.errors?.['required']">This field is required.</p>
+    <p *ngIf="control.errors?.['minlength']">
+      Minimum length: {{ minLength }} characters.
+    </p>
+    <p *ngIf="control.errors?.['maxlength']">
+      Maximum length: {{ maxLength }} characters.
+    </p>
+    <p *ngIf="control.errors?.['pattern']">Invalid format.</p>
+    <p *ngIf="control.errors?.['email']">Invalid email format.</p>
+    <p *ngIf="control.errors?.['numbersOnly']">Only numbers are allowed.</p>
+  </div>
+</div>

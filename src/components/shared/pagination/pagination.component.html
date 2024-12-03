@@ -1,0 +1,23 @@
+<nav class="pagination">
+  <button [disabled]="currentPage === 0" (click)="changePage(currentPage - 1)">
+    Previous
+  </button>
+
+  @for (page of pages; track $index) {
+  <button
+    [class.active]="page - 1 === currentPage"
+    (click)="changePage(page - 1)"
+  >
+    {{ page }}
+  </button>
+  } @if (showEllipsis) {
+  <span>...</span>
+  }
+
+  <button
+    [disabled]="currentPage + 1 === totalPages"
+    (click)="changePage(currentPage + 1)"
+  >
+    Next
+  </button>
+</nav>

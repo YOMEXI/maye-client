@@ -1,0 +1,16 @@
+<header class="header">
+  <button class="hamburger-box" (click)="onToggleSidebar()">
+    <i class="bx bx-menu"></i>
+  </button>
+  <div class="search-box">
+    <input type="text" class="input" />
+    <i class="bx bx-search-alt-2"></i>
+  </div>
+  <button (click)="showInfoBox()" class="info">
+    <i class="bx bx-dots-vertical-rounded"></i>
+    <div *ngIf="infobox" class="info-box">
+      <span>Logout</span>
+      <span>Settings</span>
+    </div>
+  </button>
+</header>

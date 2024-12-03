@@ -1,0 +1,34 @@
+<section class="sidebar">
+  <div class="logo">
+    <h3>MAYE</h3>
+    <i class="bx bxs-coffee-bean"></i>
+  </div>
+  <nav>
+    <ul>
+      <li
+        *ngFor="let item of menuItems"
+        [ngClass]="{ 'is-expanded': item.isExpanded }"
+      >
+        <a [routerLink]="item.route" (click)="toggleSubmenu(item)">
+          <i class="bx" [ngClass]="item.icon"></i>
+          <span>{{ item.name }}</span>
+          <i
+            *ngIf="item.subItems && item.subItems.length > 0"
+            class="bx"
+            [ngClass]="
+              item.isExpanded ? 'bxs-chevron-down' : 'bxs-chevron-right'
+            "
+          ></i>
+        </a>
+        <ul>
+          <li *ngFor="let subItem of item.subItems">
+            <a [routerLink]="subItem.route">
+              <i class="fas" [ngClass]="subItem.icon"></i>
+              <span>{{ subItem.name }}</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</section>
